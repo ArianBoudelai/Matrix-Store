@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>404 ُStore</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#050705;
+    --neon-green: #00ff88;
+    --neon-dark: rgba(0,255,136,0.06);
+    --glass: rgba(0,0,0,0.45);
+    --accent: #00ffd5;
+  }
+
+  html,body{height:100%;margin:0;font-family: "Orbitron", "Share Tech Mono", system-ui, monospace;background:var(--bg);color:#cfeee0;}
+
+#matrix {
+  position:fixed; inset:0; z-index:0; display:block;
+  background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6));
+}
+
+.container{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:36px auto;
+  padding:32px;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  margin-bottom:28px;
+}
+.logo-badge{
+  width:72px;height:72px;border-radius:12px;
+  background:linear-gradient(135deg,#00110a 0%, rgba(0,255,136,0.06) 100%);
+  box-shadow: 0 0 18px rgba(0,255,136,0.06), inset 0 0 12px rgba(0,255,136,0.02);
+  border:1px solid rgba(0,255,136,0.14);
+  display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--neon-green);
+  font-size:20px;
+}
+
+.glitch-wrap{position:relative; overflow:visible; line-height:1;}
+.glitch{
+  font-size:48px;
+  color:var(--neon-green);
+  position:relative;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-shadow:
+    0 0 6px rgba(0,255,136,0.6),
+    0 0 18px rgba(0,255,136,0.18),
+    0 0 32px rgba(0,255,136,0.08);
+  display:inline-block;
+  padding:6px 12px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,255,136,0.02));
+  border-radius:6px;
+  border:1px solid rgba(0,255,136,0.12);
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute; left:0; top:0;
+  width:100%; height:100%;
+  pointer-events:none;
+}
+.glitch::before{
+  left:2px; text-shadow:-6px 0 var(--neon-green); clip-path: inset(0 0 60% 0);
+  opacity:0.85; transform: translateY(-2px);
+  mix-blend-mode: screen;
+}
+.glitch::after{
+  left:-2px; text-shadow:6px 0 rgba(0,200,120,0.9); clip-path: inset(60% 0 0 0);
+  opacity:0.8; transform: translateY(2px);
+  mix-blend-mode: screen;
+}
+@keyframes glitchShift {
+  0%{transform:translateX(0);}
+  20%{transform:translateX(-2px) skewX(-1deg);}
+  40%{transform:translateX(2px) skewX(1deg);}
+  60%{transform:translateX(-1px);}
+  80%{transform:translateX(1px);}
+  100%{transform:translateX(0);}
+}
+.glitch:hover{animation:glitchShift 420ms infinite;}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap:20px;
+  margin-top:22px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(0,0,0,0.42), rgba(0,0,0,0.6));
+  border:1px solid rgba(0,255,136,0.12);
+  padding:18px;
+  border-radius:14px;
+  box-shadow: 0 6px 30px rgba(0,255,136,0.03), 0 0 10px rgba(0,255,136,0.04) inset;
+  position:relative;
+  overflow:hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card::after{
+  content:"";
+  position:absolute; inset:-2px;
+  border-radius:16px;
+  pointer-events:none;
+  box-shadow: 0 0 30px 6px rgba(0,255,136,0.06), 0 0 48px rgba(0,255,136,0.04) inset;
+  mix-blend-mode: screen;
+}
+
+.card .frame{
+  position:absolute; inset:6px;
+  border-radius:10px;
+  pointer-events:none;
+  border:1px solid rgba(0,255,136,0.18);
+  box-shadow: 0 0 22px rgba(0,255,136,0.06);
+}
+
+.thumb{
+  height:140px;
+  border-radius:8px;
+  background: linear-gradient(90deg, rgba(0,255,136,0.06), rgba(0,255,136,0.02));
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:#88ffb3;
+  margin-bottom:12px;border:1px dashed rgba(0,255,136,0.06);
+}
+
+.card h3{margin:0 0 8px 0;color:var(--neon-green); font-size:20px;}
+.card p{margin:0 0 12px 0;font-size:13px;color:#bfffdc;opacity:0.9;}
+.card .meta{display:flex;justify-content:space-between;align-items:center;}
+.btn{
+  background:linear-gradient(90deg,var(--neon-green), #00ffd5);
+  color:#00110a;padding:8px 12px;border-radius:8px;font-weight:700;border:none;
+  box-shadow:0 6px 18px rgba(0,255,136,0.08);
+  cursor:pointer; transition: transform .12s ease;
+}
+.btn:active{transform:translateY(1px);}
+
+.tag{
+  font-size:12px;padding:6px 8px;border-radius:6px;border:1px solid rgba(0,255,136,0.12);
+  background: linear-gradient(180deg, rgba(0,255,136,0.03), rgba(0,255,136,0.01));
+  color:var(--neon-green);
+}
+
+.card:hover{ transform:translateY(-6px); box-shadow:0 18px 80px rgba(0,255,136,0.06); }
+
+/* responsive title size */
+@media (max-width:640px){
+  .glitch{font-size:34px;}
+  .logo-badge{width:56px;height:56px;font-size:16px;}
+}
+
+.footer{margin-top:28px;color:#86ffd0;opacity:0.8;font-size:13px;text-align:center;padding:16px;}
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+  <header class="header">
+    <div class="logo-badge">NS</div>
+    <div class="glitch-wrap">
+      <div class="glitch" data-text="NEO STORE">NEO STORE</div>
+      <div style="font-size:12px;color:#7fffd4;margin-top:6px;">Neo_Store.exe</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="products">
+      <!-- sample cards -->
+      <article class="card">
+        <div class="frame"></div>
+        <div class="thumb">Chips</div>
+        <h3>Pepsi</h3>
+        <p>Chips and Pepsi great together .</p>
+        <div class="meta">
+          <span class="tag">In Stock</span>
+          <button class="btn">Buy •$24</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="frame"></div>
+        <div class="thumb">Pepsi hoodie</div>
+        <h3>Pepsi hoodie</h3>
+        <p>Black hoodie with pepsi logo.</p>
+        <div class="meta">
+          <span class="tag">Low Stock</span>
+          <button class="btn">Buy • $39</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="frame"></div>
+        <div class="thumb">Pepsi poster</div>
+        <h3>Pepsi poster1</h3>
+        <p>delightful really delightful.</p>
+        <div class="meta">
+          <span class="tag">Preorder</span>
+          <button class="btn">Preorder • $12</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="frame"></div>
+        <div class="thumb">Pepsi speaker</div>
+        <h3>SpeakerP1</h3>
+        <p>water proof.</p>
+        <div class="meta">
+          <span class="tag">Digital</span>
+          <button class="btn">Buy • $7</button>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <div class="footer">Made by ArianBoudelai © <span id="year"></span></div>
+</div>
+
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+const fontSize = 16;
+const columns = Math.floor(W / fontSize);
+const drops = new Array(columns).fill(0);
+const letters = "アカサタナハマヤラワ01#@%$";
+
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.12)";
+  ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = "rgba(0,255,120,0.75)";
+  ctx.font = `${fontSize}px monospace`;
+
+  for (let i=0;i<columns;i++){
+    const text = letters.charAt(Math.floor(Math.random()*letters.length));
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+    if (drops[i]*fontSize > H && Math.random() > 0.975) drops[i]=0;
+    drops[i]++;
+  }
+}
+let anim = setInterval(draw, 60);
+window.addEventListener('resize', ()=>{
+  W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
+});
+
+const glitchEl = document.querySelector('.glitch');
+setInterval(()=> {
+  glitchEl.style.transform = `translateX(${(Math.random()-0.5)*4}px) translateY(${(Math.random()-0.5)*2}px)`;
+}, 220);
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('.btn').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    b.textContent = 'Added ✓';
+    b.disabled = true;
+    b.style.opacity = 0.9;
+  });
+});
+</script>
+</body>
+</html>
