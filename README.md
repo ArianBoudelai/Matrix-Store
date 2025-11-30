@@ -1,2 +1,2 @@
 # Matrix-Store
-ehem,soooo if you understand what this website is you are not a hackerr.
+ok,if you kinda understand what this website is,you are part of the system,if NOT you are still part of it...cheers....
